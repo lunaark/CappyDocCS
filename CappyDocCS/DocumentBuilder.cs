@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
+
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 
@@ -19,7 +19,7 @@ namespace CappyDocCS
                 {
                     if (ScriptItem != null)
                     {
-                        // instantiate some 
+                        // instantiate some
                         // TODO: this loop contains alot of copy paste and hackiness because im tired and shit, please clean it up
                         string[] Fields = ScriptItem.Split(';');
 
@@ -35,7 +35,7 @@ namespace CappyDocCS
                             FullFileName = Fields[2];
                             FocusFileName = Fields[3];
                         }
-                        else if(Fields.Length == 2)
+                        else if (Fields.Length == 2)
                         {
                             ButtonClicked = Fields[0];
                             FullFileName = Fields[1];
@@ -153,7 +153,7 @@ namespace CappyDocCS
                         }
                         if (Fields.Length == 2)
                         {
-                            if (ButtonClicked.Equals("Space") || ButtonClicked.Equals("Escape") || ButtonClicked.Equals("Enter")) 
+                            if (ButtonClicked.Equals("Space") || ButtonClicked.Equals("Escape") || ButtonClicked.Equals("Enter"))
                             {
                                 ButtonAction = "Press";
                             }

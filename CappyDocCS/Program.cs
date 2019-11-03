@@ -19,7 +19,6 @@ namespace CappyDocCS
         private MenuItem menuItem5;
         private MenuItem menuItem6;
         private System.ComponentModel.IContainer components;
-        private bool isRecording = false;
 
         private Overwatch Recorder = new Overwatch();
         private Project projHandle = new Project();
@@ -135,28 +134,28 @@ namespace CappyDocCS
         // buttons
         private void menuItem0_Click(object Sender, EventArgs e)
         {
-            if (!isRecording)
+            if (!Cappy.IsRecording)
             {
                 notifyIcon1.Icon = onIco;
                 menuItem0.Enabled = false;
                 menuItem1.Enabled = true;
                 menuItem4.Enabled = false;
 
-                isRecording = !isRecording;
+                Cappy.IsRecording = !Cappy.IsRecording;
                 Recorder.Start();
             }
         }
 
         private void menuItem1_Click(object Sender, EventArgs e)
         {
-            if (isRecording)
+            if (Cappy.IsRecording)
             {
                 notifyIcon1.Icon = offIco;
                 menuItem0.Enabled = true;
                 menuItem1.Enabled = false;
                 menuItem4.Enabled = true;
 
-                isRecording = !isRecording;
+                Cappy.IsRecording = !Cappy.IsRecording;
                 Recorder.Stop();
             }
         }

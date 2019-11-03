@@ -1,7 +1,8 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Gma.System.MouseKeyHook;
 
-using Gma.System.MouseKeyHook;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CappyDocCS
 {
@@ -16,7 +17,13 @@ namespace CappyDocCS
 
         public void Subscribe()
         {
+            var map = new Dictionary<Combination, Action>
+            {
+                { Combination.FromString("Alt+P"), () => ToggleRecord() },
+            };
+
             m_GlobalHook = Hook.GlobalEvents();
+            Hook.GlobalEvents().OnCombination(map);
 
             m_GlobalHook.MouseDownExt += GlobalHookMouseDownExt;
             m_GlobalHook.KeyPress += GlobalHookKeyPress;
@@ -41,18 +48,32 @@ namespace CappyDocCS
             ProjectObj.SaveProject();
         }
 
+        public void ToggleRecord()
+        {
+            if (!Cappy.IsRecording)
+            {
+                Start();
+            }
+            else
+            {
+                Stop();
+            }
+        }
+
         private void GlobalHookKeyPress(object sender, KeyPressEventArgs e)
         {
-            switch(e.KeyChar)
+            switch (e.KeyChar)
             {
                 case (char)Keys.Tab:
-                    Capture.GetCapture(e.KeyChar.ToString());
+                    Capture.GetCapture("Tab");
                     break;
+
                 case (char)Keys.Escape:
-                    Capture.GetCapture(e.KeyChar.ToString());
+                    Capture.GetCapture("Escape");
                     break;
+
                 case (char)Keys.Enter:
-                    Capture.GetCapture(e.KeyChar.ToString());
+                    Capture.GetCapture("Enter");
                     break;
             }
         }

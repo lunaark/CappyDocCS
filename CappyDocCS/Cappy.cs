@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Media;
 using System.Windows.Forms;
 
 namespace CappyDocCS
@@ -13,6 +12,7 @@ namespace CappyDocCS
         private static string templatePath;
         private static string logoPath;
         private static string projectPath;
+        private static bool isRecording = false;
         private static char[] seperator = { '?' };
 
         private static string prefix = "CAP";
@@ -20,6 +20,18 @@ namespace CappyDocCS
         private static string extension = ".bmp";
         private static string projectExtension = ".capproj";
         private static string docExtension = ".doc";
+
+        public static bool IsRecording
+        {
+            get
+            {
+                return isRecording;
+            }
+            set
+            {
+                isRecording = value;
+            }
+        }
 
         public static string FieldSeperator
         {
