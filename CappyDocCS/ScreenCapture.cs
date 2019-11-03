@@ -84,7 +84,7 @@ namespace CappyDocCS
             }
             else
             {
-                /*
+                   /*
                     * Because it was one of the main obstacles in this project, I'd like to explain how I got accurate highlighting in focused screenshots.
                     *
                     * So, I used Console.WriteLine to compare the boundaries of 'bounds' with the attempted corrected value of posX.

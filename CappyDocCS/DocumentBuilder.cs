@@ -153,11 +153,7 @@ namespace CappyDocCS
                         }
                         if (Fields.Length == 2)
                         {
-                            if (ButtonClicked.Equals("Space") || ButtonClicked.Equals("Escape") || ButtonClicked.Equals("Enter"))
-                            {
-                                ButtonAction = "Press";
-                            }
-
+                            ButtonAction = "Press";
                             ParagraphText = ButtonAction + " " + ButtonClicked;
 
                             // create our paragraph to work with

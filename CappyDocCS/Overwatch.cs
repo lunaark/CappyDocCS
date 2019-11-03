@@ -62,7 +62,7 @@ namespace CappyDocCS
 
         private void GlobalHookKeyPress(object sender, KeyPressEventArgs e)
         {
-            string CaptureDetails;
+            string CaptureDetails = String.Empty;
             switch (e.KeyChar)
             {
                 case (char)Keys.Tab:
