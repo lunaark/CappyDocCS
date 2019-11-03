@@ -6,7 +6,7 @@ namespace CappyDocCS
 {
     public static class ScreenCapture
     {
-        public static Bitmap GetScreenShot(int posX, int posY, int mode)
+        public static Bitmap GetScreenShot(int posX, int posY, int mode, bool key)
         {
             /*
              *
@@ -100,7 +100,10 @@ namespace CappyDocCS
                     *
                     */
                 ClickZoneImage.CopyFromScreen(new Point(bounds.X, bounds.Y), Point.Empty, bounds.Size);
-                ClickZoneImage.DrawRectangle(redPen, (posX - (rectWidth / 2) - bounds.X) % bounds.Width, (posY - (rectHeight / 2) - bounds.Y) % bounds.Height, rectWidth, rectHeight);
+                if (!key)
+                {
+                    ClickZoneImage.DrawRectangle(redPen, (posX - (rectWidth / 2) - bounds.X) % bounds.Width, (posY - (rectHeight / 2) - bounds.Y) % bounds.Height, rectWidth, rectHeight);
+                }
             }
             ClickZoneImage.Dispose();
             return clickZoneBitmap;

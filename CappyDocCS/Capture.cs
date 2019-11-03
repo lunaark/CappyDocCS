@@ -28,11 +28,11 @@ namespace CappyDocCS
             IntPtr hwnd = NativeMethods.WindowFromPoint(posX, posY);
             string WindowText = NativeMethods.GetWindowTextByWM(hwnd);
 
-            Bitmap FullCapture = ScreenCapture.GetScreenShot(posX, posY, 0);
+            Bitmap FullCapture = ScreenCapture.GetScreenShot(posX, posY, 0, false);
             FullCapture.Save(FullFileName);
             FullCapture.Dispose();
 
-            Bitmap FocusedCapture = ScreenCapture.GetScreenShot(posX, posY, 1);
+            Bitmap FocusedCapture = ScreenCapture.GetScreenShot(posX, posY, 1, false);
             FocusedCapture.Save(FocusFileName);
             FocusedCapture.Dispose();
 
@@ -60,14 +60,29 @@ namespace CappyDocCS
             Rectangle bounds = new Rectangle();
             NativeMethods.RECT rct;
             IntPtr hwnd = NativeMethods.GetForegroundWindow();
-            NativeMethods.GetWindowRect(hwnd, out rct);
+            IntPtr parentHwnd = NativeMethods.GetParent(hwnd);
+            if (parentHwnd == IntPtr.Zero)
+            {
+                // if foreground window is already top level, just use it's hwnd
+                NativeMethods.GetWindowRect(hwnd, out rct);
 
-            bounds.X = rct.Left;
-            bounds.Y = rct.Top;
-            bounds.Width = rct.Right - rct.Left;
-            bounds.Height = rct.Bottom - rct.Top;
+                bounds.X = rct.Left;
+                bounds.Y = rct.Top;
+                bounds.Width = rct.Right - rct.Left;
+                bounds.Height = rct.Bottom - rct.Top;
+            }
+            else
+            {
+                // otherwise, get the top level window in the foreground window's hierarchy
+                NativeMethods.GetWindowRect(parentHwnd, out rct);
 
-            Bitmap Capture = ScreenCapture.GetScreenShot(bounds.X + (bounds.Width / 2), bounds.Y + (bounds.Height / 2), 1);
+                bounds.X = rct.Left;
+                bounds.Y = rct.Top;
+                bounds.Width = rct.Right - rct.Left;
+                bounds.Height = rct.Bottom - rct.Top;
+            }
+
+            Bitmap Capture = ScreenCapture.GetScreenShot(bounds.X + (bounds.Width / 2), bounds.Y + (bounds.Height / 2), 1, true);
             Capture.Save(FileName);
             Capture.Dispose();
 
