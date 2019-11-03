@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic; // damn right i just did
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -38,6 +39,11 @@ namespace CappyDocCS
             FocusedCapture.Save(FocusFileName);
             FocusedCapture.Dispose();
 
+            if (String.IsNullOrEmpty(WindowText))
+            {
+                // i hate myself for doing this, i should be forbidden from touching an IDE or a programming language ever again
+                WindowText = Interaction.InputBox("Unable to retrieve action! Please type the action you just performed.", "Action");
+            }
             string CaptureDetails = buttonClicked + ";" + WindowText + ";" + FullFileName + ";" + FocusFileName + "?";
             return CaptureDetails;
         }
