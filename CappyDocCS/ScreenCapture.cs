@@ -32,7 +32,6 @@ namespace CappyDocCS
             {
                 // window capture
                 NativeMethods.RECT rct;
-                NativeMethods.RECT winRct;
 
                 IntPtr handle = NativeMethods.WindowFromPoint(posX, posY);
                 IntPtr parentHandle = NativeMethods.GetParent(handle);
@@ -44,15 +43,8 @@ namespace CappyDocCS
                 }
                 else
                 {
-                    // otherwise, use the top-level window in that window's hierarchy. however, if we know that this is the top-level window, we must've clicked on the child, so get it's rect too for further demonstration.
+                    // otherwise, use the top-level window in that window's hierarchy.
                     NativeMethods.GetWindowRect(parentHandle, out rct);
-                    NativeMethods.GetWindowRect(handle, out winRct);
-
-                    // highlight child window that was clicked
-                    winBounds.X = winRct.Left - 12;
-                    winBounds.Y = winRct.Top - 12;
-                    winBounds.Width = (winRct.Right - winRct.Left) + 24;
-                    winBounds.Height = (winRct.Bottom - winRct.Top) + 24;
                 }
 
                 // make the bounds whatever is in RCT, then zoom out by 6 pixels
@@ -109,7 +101,6 @@ namespace CappyDocCS
                     */
                 ClickZoneImage.CopyFromScreen(new Point(bounds.X, bounds.Y), Point.Empty, bounds.Size);
                 ClickZoneImage.DrawRectangle(redPen, (posX - (rectWidth / 2) - bounds.X) % bounds.Width, (posY - (rectHeight / 2) - bounds.Y) % bounds.Height, rectWidth, rectHeight);
-                ClickZoneImage.DrawRectangle(redHighlight, (winBounds.X - bounds.X) % bounds.Width, (winBounds.Y - bounds.Y) % bounds.Height, winBounds.Width, winBounds.Height);
             }
             ClickZoneImage.Dispose();
             return clickZoneBitmap;
