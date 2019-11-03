@@ -62,18 +62,22 @@ namespace CappyDocCS
 
         private void GlobalHookKeyPress(object sender, KeyPressEventArgs e)
         {
+            string CaptureDetails;
             switch (e.KeyChar)
             {
                 case (char)Keys.Tab:
-                    Capture.GetCapture("Tab");
+                    CaptureDetails = Capture.GetCapture("Tab");
+                    ProjectObj.AddItem(CaptureDetails);
                     break;
 
                 case (char)Keys.Escape:
-                    Capture.GetCapture("Escape");
+                    CaptureDetails = Capture.GetCapture("Escape");
+                    ProjectObj.AddItem(CaptureDetails);
                     break;
 
                 case (char)Keys.Enter:
-                    Capture.GetCapture("Enter");
+                    CaptureDetails = Capture.GetCapture("Enter");
+                    ProjectObj.AddItem(CaptureDetails);
                     break;
             }
         }

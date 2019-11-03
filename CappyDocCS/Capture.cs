@@ -46,13 +46,13 @@ namespace CappyDocCS
             string saveTime = Cappy.GetSaveTime();
             string folder = Cappy.FolderName + @"\Images\";
 
-            string FileName = String.Empty;
+            string FileName;
 
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
             }
-            FileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
+            FileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "key" + Cappy.Extension;
 
             Debug.WriteLine("Button clicked: " + buttonClicked);
 

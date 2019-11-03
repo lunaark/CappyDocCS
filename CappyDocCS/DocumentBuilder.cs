@@ -158,7 +158,7 @@ namespace CappyDocCS
                                 ButtonAction = "Press";
                             }
 
-                            ParagraphText = ButtonAction + " " + WindowText;
+                            ParagraphText = ButtonAction + " " + ButtonClicked;
 
                             // create our paragraph to work with
                             Paragraph p = document.InsertParagraph();
