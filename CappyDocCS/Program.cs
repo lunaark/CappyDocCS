@@ -24,8 +24,8 @@ namespace CappyDocCS
         private Overwatch Recorder = new Overwatch();
         private Project projHandle = new Project();
 
-        private Icon offIco = new Icon("res/ico/off.ico");
-        private Icon onIco = new Icon("res/ico/on.ico");
+        private Icon offIco = Properties.Resources.off;
+        private Icon onIco = Properties.Resources.on;
 
         [STAThread]
         private static void Main()
