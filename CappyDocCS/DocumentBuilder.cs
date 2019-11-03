@@ -15,18 +15,6 @@ namespace CappyDocCS
 
             using (DocX document = DocX.Create(FullDocFileName))
             {
-                // apply template
-                try
-                {
-                    document.ApplyTemplate(Cappy.TemplatePath);
-                }
-                catch(IOException)
-                {
-                    MessageBox.Show("Unable to open the template for reading!\nPlease try closing any applications that are using this resource\nand then try building your project.", "CappyDoc", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                document.InsertSection(); // here we go
-
                 foreach (string ScriptItem in ScriptItems)
                 {
                     if (ScriptItem != null)
@@ -153,9 +141,8 @@ namespace CappyDocCS
                             p.AppendLine().AppendPicture(FullCapturePic);
                             p.AppendLine(); // space the images
                             p.AppendLine().AppendPicture(FocusCapturePic);
-                            p.AppendLine();
+                            p.AppendLine(); // leave a space for writing
 
-                            // leave a space for writing
                             p.InsertPageBreakAfterSelf();
 
                             // release unneeded resources
@@ -220,36 +207,6 @@ namespace CappyDocCS
                         }
                     }
                 }
-
-                // first page is special
-                document.DifferentFirstPage = true;
-                document.DifferentOddAndEvenPages = true;
-
-                // let there be headers and footers
-                document.AddHeaders();
-                document.AddFooters();
-
-                // insert headers
-                var logo = System.Drawing.Image.FromFile(Cappy.LogoPath);
-
-                using (var imgStream = new MemoryStream())
-                {
-                    // use a logo
-                    logo.Save(imgStream, logo.RawFormat);
-                    imgStream.Seek(0, SeekOrigin.Begin);
-                    var headImg = document.AddImage(imgStream);
-                    var headPic = headImg.CreatePicture();
-
-                    var headerImg = document.Headers.First.InsertParagraph();
-                    headerImg.Alignment = Alignment.center;
-                    headerImg.InsertPicture(headPic);
-                }
-
-                // insert footers
-                document.Footers.First.InsertParagraph("Insert Copyright Info").Alignment = Alignment.right;
-                document.Footers.Odd.InsertParagraph("Page ").AppendPageNumber(PageNumberFormat.normal).Alignment = Alignment.right;
-                document.Footers.Even.InsertParagraph("Page ").AppendPageNumber(PageNumberFormat.normal).Alignment = Alignment.right;
-
                 document.Save();
             }
         }
