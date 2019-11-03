@@ -6,7 +6,7 @@ namespace CappyDocCS
 {
     public static class ScreenCapture
     {
-        public static Bitmap GetScreenShot(int posX, int posY, int size)
+        public static Bitmap GetScreenShot(int posX, int posY, int mode)
         {
             /*
              *
@@ -23,7 +23,7 @@ namespace CappyDocCS
             int rectX = posX - (rectWidth / 2);
             int rectY = posY - (rectHeight / 2);
 
-            if (size == 0)
+            if (mode == 0)
             {
                 // full-screen capture
                 bounds = Screen.PrimaryScreen.Bounds;
@@ -73,7 +73,7 @@ namespace CappyDocCS
             Pen redPen = new Pen(Color.Crimson, 2);
             Pen redHighlight = new Pen(Color.Red, 4);
 
-            if (size == 0)
+            if (mode == 0)
             {
                 NativeMethods.RECT rct;
 

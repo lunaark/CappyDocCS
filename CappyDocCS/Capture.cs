@@ -29,13 +29,12 @@ namespace CappyDocCS
             IntPtr hwnd = NativeMethods.WindowFromPoint(posX, posY);
             string WindowText = NativeMethods.GetWindowTextByWM(hwnd);
 
-            // do something with the window title and other windows functions
 
             Bitmap FullCapture = ScreenCapture.GetScreenShot(posX, posY, 0);
             FullCapture.Save(FullFileName);
             FullCapture.Dispose();
 
-            Bitmap FocusedCapture = ScreenCapture.GetScreenShot(posX, posY, 200);
+            Bitmap FocusedCapture = ScreenCapture.GetScreenShot(posX, posY, 1);
             FocusedCapture.Save(FocusFileName);
             FocusedCapture.Dispose();
 
@@ -45,17 +44,17 @@ namespace CappyDocCS
 
         public static string GetCapture(string buttonClicked)
         {
+            // method overloading is cool
             string saveTime = Cappy.GetSaveTime();
             string folder = Cappy.FolderName + @"\Images\";
 
-            string FullFileName = String.Empty;
-            string FocusFileName = String.Empty;
+            string FileName = String.Empty;
 
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
             }
-            FullFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
+            FileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
 
             Debug.WriteLine("Button clicked: " + buttonClicked);
 
@@ -65,18 +64,16 @@ namespace CappyDocCS
             IntPtr hwnd = NativeMethods.GetForegroundWindow();
             NativeMethods.GetWindowRect(hwnd, out rct);
 
-            bounds.X = rct.Left - 16; // ditto
-            bounds.Y = rct.Top - 16; // dittoo
-            bounds.Width = (rct.Right - rct.Left) + 32; // add 32, because you want to account for 16 pixels on both sides
-            bounds.Height = (rct.Bottom - rct.Top) + 32; // dittooo
+            bounds.X = rct.Left;
+            bounds.Y = rct.Top;
+            bounds.Width = rct.Right - rct.Left;
+            bounds.Height = rct.Bottom - rct.Top;
 
-            // do something with the window title and other windows functions
+            Bitmap Capture = ScreenCapture.GetScreenShot(bounds.X + (bounds.Width / 2), bounds.Y + (bounds.Height / 2), 1);
+            Capture.Save(FileName);
+            Capture.Dispose();
 
-            Bitmap FullCapture = ScreenCapture.GetScreenShot(bounds.X, bounds.Y, 0);
-            FullCapture.Save(FullFileName);
-            FullCapture.Dispose();
-
-            string CaptureDetails = buttonClicked + ";" + FullFileName + "?";
+            string CaptureDetails = buttonClicked + ";" + FileName + "?";
             return CaptureDetails;
         }
     }

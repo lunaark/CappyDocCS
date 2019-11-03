@@ -62,10 +62,6 @@ namespace CappyDocCS
                             // a right-click is a right-click
                             if (ButtonClicked.Equals("Right"))
                             { ButtonAction = "Right-click"; }
-                            else if (ButtonClicked.Equals("Space") || ButtonClicked.Equals("Escape") || ButtonClicked.Equals("Enter")) ;
-                            {
-                                ButtonAction = "Press";
-                            }
 
                             // because alot of things in windows have weird window names, or you perform more advanced actions on them then click, let's define some things to make our documents nicer
                             if (!String.IsNullOrEmpty(WindowText))
@@ -170,51 +166,12 @@ namespace CappyDocCS
                         }
                         if (Fields.Length == 2)
                         {
-                            // a right-click is a right-click
-                            if (ButtonClicked.Equals("Right"))
-                            { ButtonAction = "Right-click"; }
-                            else if (ButtonClicked.Equals("Space") || ButtonClicked.Equals("Escape") || ButtonClicked.Equals("Enter")) ;
+                            if (ButtonClicked.Equals("Space") || ButtonClicked.Equals("Escape") || ButtonClicked.Equals("Enter")) 
                             {
                                 ButtonAction = "Press";
                             }
 
-                            // because alot of things in windows have weird window names, or you perform more advanced actions on them then click, let's define some things to make our documents nicer
-                            if (!String.IsNullOrEmpty(WindowText))
-                            {
-                                // if string is not empty, check it for aforementioned jank
-                                switch (WindowText)
-                                {
-                                    case "Tree View":
-                                        ButtonAction = "Scroll through";
-                                        break;
-
-                                    case "System Promoted Notification Area":
-                                        WindowText = "Notification Tray";
-                                        break;
-
-                                    case "New notification":
-                                        WindowText = "Notification";
-                                        break;
-
-                                    case "Overflow Notification Area":
-                                        WindowText = "System Tray Icon";
-                                        break;
-
-                                    case "Running applications":
-                                        WindowText = "Taskbar Icon";
-                                        break;
-
-                                    case "Start":
-                                        WindowText = "Start Menu";
-                                        break;
-                                }
-                                ParagraphText = ButtonAction + " " + WindowText;
-                            }
-                            else
-                            {
-                                // if we can't determine what was clicked, resort to this.
-                                ParagraphText = ButtonAction + " << FILL IN MISSING TEXT >>";
-                            }
+                            ParagraphText = ButtonAction + " " + WindowText;
 
                             // create our paragraph to work with
                             Paragraph p = document.InsertParagraph();
