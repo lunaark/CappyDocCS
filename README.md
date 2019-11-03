@@ -7,4 +7,4 @@ I probably started in around September-October of 2019. This codebase is very me
 
 Dependencies:
 - XCeed Words for .NET v1.4.1
-- MouseKeyHook v5.6.130
+- MouseKeyHook v5.6.0
