@@ -19,14 +19,10 @@ namespace CappyDocCS
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
-                FullFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
-                FocusFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "focus" + Cappy.Extension;
             }
-            else
-            {
-                FullFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
-                FocusFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "focus" + Cappy.Extension;
-            }
+
+            FullFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
+            FocusFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "focus" + Cappy.Extension;
 
             Debug.WriteLine("Button clicked: " + buttonClicked);
 
@@ -58,12 +54,8 @@ namespace CappyDocCS
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
-                FullFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
             }
-            else
-            {
-                FullFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
-            }
+            FullFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
 
             Debug.WriteLine("Button clicked: " + buttonClicked);
 

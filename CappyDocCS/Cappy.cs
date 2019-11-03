@@ -185,11 +185,8 @@ namespace CappyDocCS
                                 }
                                 catch (IOException)
                                 {
-                                    SystemSounds.Beep.Play();
-                                    MessageBox.Show($"Malformed config file, regenerating on next launch!", "Error!");
                                     fs.Dispose();
-                                    File.Delete(CfgPath);
-                                    System.Environment.Exit(1);
+                                    Error.invalidCfg();
                                 }
                                 break;
 
@@ -200,11 +197,8 @@ namespace CappyDocCS
                                 }
                                 catch (IOException)
                                 {
-                                    SystemSounds.Beep.Play();
-                                    MessageBox.Show($"Malformed config file, regenerating on next launch!", "Error!");
                                     fs.Dispose();
-                                    File.Delete(CfgPath);
-                                    System.Environment.Exit(1);
+                                    Error.invalidCfg();
                                 }
                                 break;
 
@@ -215,11 +209,8 @@ namespace CappyDocCS
                                 }
                                 catch (IOException)
                                 {
-                                    SystemSounds.Beep.Play();
-                                    MessageBox.Show($"Malformed config file, regenerating on next launch!", "Error!");
                                     fs.Dispose();
-                                    File.Delete(CfgPath);
-                                    System.Environment.Exit(1);
+                                    Error.invalidCfg();
                                 }
                                 break;
 
@@ -230,11 +221,8 @@ namespace CappyDocCS
                                 }
                                 catch (IOException)
                                 {
-                                    SystemSounds.Beep.Play();
-                                    MessageBox.Show($"Malformed config file, regenerating on next launch!", "Error!");
                                     fs.Dispose();
-                                    File.Delete(CfgPath);
-                                    System.Environment.Exit(1);
+                                    Error.invalidCfg();
                                 }
                                 break;
                         }

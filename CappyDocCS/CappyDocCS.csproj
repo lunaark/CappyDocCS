@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="DocumentBuilder.cs" />
     <Compile Include="DocumentScript.cs" />
+    <Compile Include="Error.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Overwatch.cs" />
     <Compile Include="Program.cs">
