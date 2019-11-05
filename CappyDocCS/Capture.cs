@@ -50,6 +50,11 @@ namespace CappyDocCS
                 buttonAction = "Press";
             }
 
+            if(String.IsNullOrEmpty(WindowText))
+            {
+                WindowText = "<< UNKNOWN >>";
+            }
+
             string CaptureDetails = buttonAction + ";" + buttonClicked + ";" + WindowText + ";" + FullFileName + ";" + FocusFileName + "?";
             return CaptureDetails;
         }
