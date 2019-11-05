@@ -24,8 +24,6 @@ namespace CappyDocCS
             FullFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "full" + Cappy.Extension;
             FocusFileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "focus" + Cappy.Extension;
 
-            Debug.WriteLine("Button clicked: " + buttonClicked);
-
             IntPtr hwnd = NativeMethods.WindowFromPoint(posX, posY);
             string WindowText = NativeMethods.GetWindowTextByWM(hwnd);
 
@@ -71,8 +69,6 @@ namespace CappyDocCS
                 Directory.CreateDirectory(folder);
             }
             FileName = folder + Cappy.Prefix + Cappy.FieldSeperator + saveTime + Cappy.FieldSeperator + "key" + Cappy.Extension;
-
-            Debug.WriteLine("Button clicked: " + buttonClicked);
 
             // rectangl shid
             Rectangle bounds = new Rectangle();
