@@ -54,10 +54,6 @@ namespace CappyDocCS
                                 // if string is not empty, check it for aforementioned jank
                                 switch (WindowText)
                                 {
-                                    case "Tree View":
-                                        ButtonAction = "Scroll through";
-                                        break;
-
                                     case "System Promoted Notification Area":
                                         WindowText = "Notification Tray";
                                         break;
