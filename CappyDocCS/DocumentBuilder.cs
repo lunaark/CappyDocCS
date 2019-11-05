@@ -29,7 +29,7 @@ namespace CappyDocCS
                         string FullFileName = String.Empty;
                         string FocusFileName = String.Empty;
 
-                        if (Fields.Length == 4)
+                        if (Fields.Length == 5)
                         {
                             ButtonAction = Fields[0];
                             ButtonClicked = Fields[1];
@@ -37,7 +37,7 @@ namespace CappyDocCS
                             FullFileName = Fields[3];
                             FocusFileName = Fields[4];
                         }
-                        else if (Fields.Length == 2)
+                        else if (Fields.Length == 3)
                         {
                             ButtonAction = Fields[0];
                             ButtonClicked = Fields[1];
@@ -46,34 +46,11 @@ namespace CappyDocCS
 
                         string ParagraphText;
 
-                        if (Fields.Length == 4)
+                        if (Fields.Length == 5)
                         {
                             // because alot of things in windows have weird window names, or you perform more advanced actions on them then click, let's define some things to make our documents nicer
                             if (!String.IsNullOrEmpty(WindowText))
                             {
-                                // if string is not empty, check it for aforementioned jank
-                                switch (WindowText)
-                                {
-                                    case "System Promoted Notification Area":
-                                        WindowText = "Notification Tray";
-                                        break;
-
-                                    case "New notification":
-                                        WindowText = "Notification";
-                                        break;
-
-                                    case "Overflow Notification Area":
-                                        WindowText = "System Tray Icon";
-                                        break;
-
-                                    case "Running applications":
-                                        WindowText = "Taskbar Icon";
-                                        break;
-
-                                    case "Start":
-                                        WindowText = "Start Menu";
-                                        break;
-                                }
                                 ParagraphText = ButtonAction + " " + WindowText;
                             }
                             else
@@ -144,7 +121,7 @@ namespace CappyDocCS
                             FocusCaptureImage.Dispose();
                             FocusCaptureStream.Dispose();
                         }
-                        if (Fields.Length == 2)
+                        if (Fields.Length == 3)
                         {
                             ParagraphText = ButtonAction + " " + ButtonClicked;
 

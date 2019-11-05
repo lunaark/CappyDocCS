@@ -209,6 +209,7 @@ namespace CappyDocCS
                     if (!Directory.Exists(Path.GetDirectoryName(projPath)))
                     {
                         Directory.CreateDirectory(Path.GetDirectoryName(projPath));
+                        Directory.CreateDirectory(Path.GetDirectoryName(projPath) + @"\Images");
                     }
                     File.Create(projPath).Dispose();
 
