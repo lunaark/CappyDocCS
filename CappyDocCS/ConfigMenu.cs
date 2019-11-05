@@ -12,9 +12,7 @@ namespace CappyDocCS
         // indexes of all paths in the CFG file
 
         private const int indexOutPath = 0;
-        private const int indexTempPath = 1;
-        private const int indexLogoPath = 2;
-        private const int indexProjPath = 3;
+        private const int indexProjPath = 1;
 
         public ConfigMenu()
         {
@@ -23,8 +21,6 @@ namespace CappyDocCS
 
             // set text on buttons and textboxes
             txtOutPath.Text = Cappy.FolderName;
-            txtLogoPath.Text = Cappy.LogoPath;
-            txtTemplatePath.Text = Cappy.TemplatePath;
             txtProjPath.Text = Cappy.ProjectPath;
 
             // because project path can be set outside of this form, just be sure that it's saved in the config.
@@ -62,44 +58,6 @@ namespace CappyDocCS
                     cfgValues[indexOutPath] = outPath.SelectedPath;
                     Cappy.FolderName = outPath.SelectedPath;
                     txtOutPath.Text = outPath.SelectedPath;
-                }
-            }
-        }
-
-        private void btnLogoPath_Click(object sender, EventArgs e)
-        {
-            using (var logoPath = new OpenFileDialog())
-            {
-                logoPath.Filter = "PNG files(*.png)|*.png";
-                logoPath.Title = "Select a company/organization logo...";
-                logoPath.InitialDirectory = Cappy.LogoPath;
-
-                DialogResult result = logoPath.ShowDialog();
-
-                if (result == DialogResult.OK)
-                {
-                    cfgValues[indexLogoPath] = logoPath.FileName;
-                    Cappy.LogoPath = logoPath.FileName;
-                    txtLogoPath.Text = logoPath.FileName;
-                }
-            }
-        }
-
-        private void btnTempPath_Click(object sender, EventArgs e)
-        {
-            using (var tempPath = new OpenFileDialog())
-            {
-                tempPath.Filter = "Word Document(*.doc;*.docx)|*.doc;*.docx";
-                tempPath.Title = "Select a document template...";
-                tempPath.InitialDirectory = Cappy.TemplatePath;
-
-                DialogResult result = tempPath.ShowDialog();
-
-                if (result == DialogResult.OK)
-                {
-                    cfgValues[indexTempPath] = tempPath.FileName;
-                    Cappy.TemplatePath = tempPath.FileName;
-                    txtTemplatePath.Text = tempPath.FileName;
                 }
             }
         }

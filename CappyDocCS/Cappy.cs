@@ -9,8 +9,6 @@ namespace CappyDocCS
     {
         private static string cfgPath = @"cfg\cappyConfig.dat";
         private static string folderName;
-        private static string templatePath;
-        private static string logoPath;
         private static string projectPath;
         private static bool isRecording = false;
         private static char[] seperator = { '?' };
@@ -93,30 +91,6 @@ namespace CappyDocCS
             }
         }
 
-        public static string TemplatePath
-        {
-            get
-            {
-                return templatePath;
-            }
-            set
-            {
-                templatePath = value;
-            }
-        }
-
-        public static string LogoPath
-        {
-            get
-            {
-                return logoPath;
-            }
-            set
-            {
-                logoPath = value;
-            }
-        }
-
         public static string CfgPath
         {
             get
@@ -182,9 +156,7 @@ namespace CappyDocCS
                     string[] cfgValues = cfgContent.Split(Seperator);
 
                     const int indexOutPath = 0;
-                    const int indexTempPath = 1;
-                    const int indexLogoPath = 2;
-                    const int indexProjPath = 3;
+                    const int indexProjPath = 1;
 
                     for (var i = 0; i < cfgValues.Length; i++)
                     {
@@ -194,30 +166,6 @@ namespace CappyDocCS
                                 try
                                 {
                                     FolderName = cfgValues[indexOutPath];
-                                }
-                                catch (IOException)
-                                {
-                                    fs.Dispose();
-                                    Error.invalidCfg();
-                                }
-                                break;
-
-                            case indexTempPath:
-                                try
-                                {
-                                    TemplatePath = cfgValues[indexTempPath];
-                                }
-                                catch (IOException)
-                                {
-                                    fs.Dispose();
-                                    Error.invalidCfg();
-                                }
-                                break;
-
-                            case indexLogoPath:
-                                try
-                                {
-                                    LogoPath = cfgValues[indexLogoPath];
                                 }
                                 catch (IOException)
                                 {
@@ -244,20 +192,24 @@ namespace CappyDocCS
             }
             else
             {
+                if (!Directory.Exists(Path.GetDirectoryName(CfgPath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(CfgPath));
+                }
                 File.Create(CfgPath).Dispose();
 
                 using (StreamWriter sw = new StreamWriter(CfgPath))
                 {
                     const int indexOutPath = 0;
-                    const int indexTempPath = 1;
-                    const int indexLogoPath = 2;
-                    const int indexProjPath = 3;
+                    const int indexProjPath = 1;
 
                     string outPath = Path.Combine(Application.StartupPath, "Projects");
-                    string tempPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"Microsoft\Templates\Normal.dotm");
-                    string logoPath = Path.Combine(Application.StartupPath, @"res\logo.png");
                     string projPath = Path.Combine(Application.StartupPath, @"Projects\default.capproj");
 
+                    if (!Directory.Exists(Path.GetDirectoryName(projPath)))
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(projPath));
+                    }
                     File.Create(projPath).Dispose();
 
                     for (var i = 0; i < 4; i++)
@@ -267,16 +219,6 @@ namespace CappyDocCS
                             case indexOutPath:
                                 Cappy.FolderName = outPath;
                                 sw.Write(outPath);
-                                break;
-
-                            case indexTempPath:
-                                Cappy.TemplatePath = tempPath;
-                                sw.Write(tempPath);
-                                break;
-
-                            case indexLogoPath:
-                                Cappy.LogoPath = logoPath;
-                                sw.Write(logoPath);
                                 break;
 
                             case indexProjPath:

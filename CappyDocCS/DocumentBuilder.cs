@@ -23,6 +23,7 @@ namespace CappyDocCS
                         // TODO: this loop contains alot of copy paste and hackiness because im tired and shit, please clean it up
                         string[] Fields = ScriptItem.Split(';');
 
+                        string ButtonAction = String.Empty;
                         string ButtonClicked = String.Empty;
                         string WindowText = String.Empty;
                         string FullFileName = String.Empty;
@@ -30,27 +31,23 @@ namespace CappyDocCS
 
                         if (Fields.Length == 4)
                         {
-                            ButtonClicked = Fields[0];
-                            WindowText = Fields[1];
-                            FullFileName = Fields[2];
-                            FocusFileName = Fields[3];
+                            ButtonAction = Fields[0];
+                            ButtonClicked = Fields[1];
+                            WindowText = Fields[2];
+                            FullFileName = Fields[3];
+                            FocusFileName = Fields[4];
                         }
                         else if (Fields.Length == 2)
                         {
-                            ButtonClicked = Fields[0];
-                            FullFileName = Fields[1];
+                            ButtonAction = Fields[0];
+                            ButtonClicked = Fields[1];
+                            FullFileName = Fields[2];
                         }
-
-                        string ButtonAction = "Click";
 
                         string ParagraphText;
 
                         if (Fields.Length == 4)
                         {
-                            // a right-click is a right-click
-                            if (ButtonClicked.Equals("Right"))
-                            { ButtonAction = "Right-click"; }
-
                             // because alot of things in windows have weird window names, or you perform more advanced actions on them then click, let's define some things to make our documents nicer
                             if (!String.IsNullOrEmpty(WindowText))
                             {
@@ -153,7 +150,6 @@ namespace CappyDocCS
                         }
                         if (Fields.Length == 2)
                         {
-                            ButtonAction = "Press";
                             ParagraphText = ButtonAction + " " + ButtonClicked;
 
                             // create our paragraph to work with

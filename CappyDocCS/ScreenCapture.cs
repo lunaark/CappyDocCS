@@ -84,21 +84,21 @@ namespace CappyDocCS
             }
             else
             {
-                   /*
-                    * Because it was one of the main obstacles in this project, I'd like to explain how I got accurate highlighting in focused screenshots.
-                    *
-                    * So, I used Console.WriteLine to compare the boundaries of 'bounds' with the attempted corrected value of posX.
-                    * I was looking for patterns that would indicate the causality of the inaccuracy.
-                    *
-                    * I noticed that everything was roughly offset by the position of the window.
-                    *
-                    * So, I simply took the mouse's position on both axes, subtracted half of the rectangles size on that axe (as rectangles in C# are top-left)
-                    *
-                    * Then, I simply subtracted the X and Y position of the boundaries, as they're relative to the top-left's distance from the screen's 0,0 coordinates.
-                    * This essentially put the window at 0,0, meaning that if you took the mouse cursor's position relative to our virtual 0,0, and had it wrap around if it was greater than
-                    * our virtual boxes boundaries using the modulus operator, you will have a 1:1 accurate representation of the cursor's position.
-                    *
-                    */
+                /*
+                 * Because it was one of the main obstacles in this project, I'd like to explain how I got accurate highlighting in focused screenshots.
+                 *
+                 * So, I used Console.WriteLine to compare the boundaries of 'bounds' with the attempted corrected value of posX.
+                 * I was looking for patterns that would indicate the causality of the inaccuracy.
+                 *
+                 * I noticed that everything was roughly offset by the position of the window.
+                 *
+                 * So, I simply took the mouse's position on both axes, subtracted half of the rectangles size on that axe (as rectangles in C# are top-left)
+                 *
+                 * Then, I simply subtracted the X and Y position of the boundaries, as they're relative to the top-left's distance from the screen's 0,0 coordinates.
+                 * This essentially put the window at 0,0, meaning that if you took the mouse cursor's position relative to our virtual 0,0, and had it wrap around if it was greater than
+                 * our virtual boxes boundaries using the modulus operator, you will have a 1:1 accurate representation of the cursor's position.
+                 *
+                 */
                 ClickZoneImage.CopyFromScreen(new Point(bounds.X, bounds.Y), Point.Empty, bounds.Size);
                 if (!key)
                 {

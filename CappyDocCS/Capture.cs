@@ -14,6 +14,7 @@ namespace CappyDocCS
 
             string FullFileName = String.Empty;
             string FocusFileName = String.Empty;
+            string buttonAction = String.Empty;
 
             if (!Directory.Exists(folder))
             {
@@ -36,7 +37,22 @@ namespace CappyDocCS
             FocusedCapture.Save(FocusFileName);
             FocusedCapture.Dispose();
 
-            string CaptureDetails = buttonClicked + ";" + WindowText + ";" + FullFileName + ";" + FocusFileName + "?";
+            if (buttonClicked.Equals("Left"))
+            {
+                buttonAction = "Click";
+            }
+            else if (buttonClicked.Equals("Right"))
+            {
+                buttonAction = "Right-click";
+            }
+            else if (buttonClicked.Equals("Tab") ||
+                     buttonClicked.Equals("Escape") ||
+                     buttonClicked.Equals("Enter"))
+            {
+                buttonAction = "Press";
+            }
+
+            string CaptureDetails = buttonAction + ";" + buttonClicked + ";" + WindowText + ";" + FullFileName + ";" + FocusFileName + "?";
             return CaptureDetails;
         }
 
@@ -47,6 +63,8 @@ namespace CappyDocCS
             string folder = Cappy.FolderName + @"\Images\";
 
             string FileName;
+
+            string buttonAction = String.Empty;
 
             if (!Directory.Exists(folder))
             {
@@ -86,7 +104,22 @@ namespace CappyDocCS
             Capture.Save(FileName);
             Capture.Dispose();
 
-            string CaptureDetails = buttonClicked + ";" + FileName + "?";
+            if (buttonClicked.Equals("Left"))
+            {
+                buttonAction = "Click";
+            }
+            else if (buttonClicked.Equals("Right"))
+            {
+                buttonAction = "Right-click";
+            }
+            else if (buttonClicked.Equals("Tab") ||
+                     buttonClicked.Equals("Escape") ||
+                     buttonClicked.Equals("Enter"))
+            {
+                buttonAction = "Press";
+            }
+
+            string CaptureDetails = buttonAction + ";" + buttonClicked + ";" + FileName + "?";
             return CaptureDetails;
         }
     }
